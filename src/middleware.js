@@ -11,16 +11,17 @@ const promiseMiddleware = store => next => action => {
         store.dispatch(action);
       }
     );
+
     return;
   }
 
   next(action);
-}
+};
 
 function isPromise(v) {
   return v && typeof v.then === 'function';
 }
 
 export {
-  promiseMiddleware;
-}
+  promiseMiddleware
+};

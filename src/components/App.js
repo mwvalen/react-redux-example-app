@@ -5,7 +5,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
-  appName: state.common.appName
+  appName: state.common.appName,
   redirectTo: state.common.redirectTo
 });
 
@@ -21,7 +21,7 @@ class App extends React.Component {
       this.props.onRedirect();
     }
   }
-  
+
   render() {
     return (
       <div>

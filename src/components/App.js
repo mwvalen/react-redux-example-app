@@ -6,9 +6,22 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
   appName: state.common.appName
+  redirectTo: state.common.redirectTo
+});
+
+const mapDispatchToProps = dispatch => ({
+  onRedirect: () =>
+    dispatch({ type: 'REDIRECT' })
 });
 
 class App extends React.Component {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.redirectTo) {
+      this.context.router.replace(nextProps.redirectTo);
+      this.props.onRedirect();
+    }
+  }
+  
   render() {
     return (
       <div>

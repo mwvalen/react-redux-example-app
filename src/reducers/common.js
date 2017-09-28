@@ -12,6 +12,13 @@ export default (state = defaultState, action) => {
         appLoaded: true,
         currentUser: action.payload ? action.payload.user : null
       };
+    case 'REGISTER':
+      return {
+        ...state,
+        redirectTo: action.error ? null : '/',
+        token: action.error ? null : action.payload.user.token,
+        currentUser: action.error ? null : action.payload.user
+      };
     case 'REDIRECT':
       return {...state, redirectTo: null };
     case 'LOGIN':

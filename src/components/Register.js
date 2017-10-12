@@ -6,6 +6,19 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({ ...state.auth});
 
+const mapDispatchToProps = dispatch => ({
+  onChangeEmail: value =>
+    dispatch({ type: 'UPDATE_FIELD_AUTH', key: 'email', value }),
+  onChangePassword: value =>
+    dispatch({ type: 'UPDATE_FIELD_AUTH', key: 'password', value }),
+  onChangeUsername: value =>
+    dispatch({ type: 'UPDATE_FIELD_AUTH', key: 'username', value }),
+  onSubmit: (username, email, password) => {
+    const payload = agent.Auth.register(username, email, password);
+    dispatch({ type: 'REGISTER', payload })
+  }
+});
+
 class Register extends React.Component {
   constructor() {
     super();
@@ -37,8 +50,40 @@ class Register extends React.Component {
 
               <form onSubmit={this.submitForm(username, email, password)}>
                 <fieldset>
-                  
 
+                  <fieldset className="form-group">
+                    <input
+                      className="form-control form-control-lg"
+                      type="text"
+                      placeholder="Username"
+                      value={this.props.username}
+                      onChange={this.changeUsername} />
+                  </fieldset>
+
+                  <fieldset className="form-group">
+                    <input
+                      className="form-control form-control-lg"
+                      type="email"
+                      placeholder="Email"
+                      value={this.props.email}
+                      onChange={this.changeEmail}  />
+                  </fieldset>
+
+                  <fieldset className="form-group">
+                    <input
+                      className="form-control form-control-lg"
+                      type="password"
+                      placeholder="Password"
+                      value={this.props.password}
+                      onChange={this.changePassword} />
+                  </fieldset>
+
+                  <button
+                    className="btn btn-lg btn-primary pull-xs-right"
+                    type="submit"
+                    disabled={this.props.inProgress}>
+                    Sign in
+                  </button>
 
                 </fieldset>
               </form>
@@ -50,3 +95,5 @@ class Register extends React.Component {
     );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

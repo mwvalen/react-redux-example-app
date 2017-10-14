@@ -9,6 +9,7 @@ import Register from './components/Register';
 import Settings from './components/Settings';
 import Profile from './components/Profile';
 import ProfileFavorites from './components/ProfileFavorites';
+import Editor from './components/Editor';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import App from './components/App';
@@ -24,6 +25,8 @@ ReactDOM.render((
     <Route path="article/:id" component={Article} />
     <Route path="@:username" component={Profile} />
     <Route path="@:username/favorites" component={ProfileFavorites} />
+    <Route path="editor" component={Editor} />
+    <Route path="editor/:slug" component={Editor} />
     </Route>
   </Router>
 

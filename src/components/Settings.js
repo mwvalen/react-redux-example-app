@@ -76,7 +76,7 @@ class SettingsForm extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentWillMount() {    //Initial load, props passed from Settings component
     if (this.props.currentUser) {
       Object.assign(this.state, {
         image: this.props.currentUser.image || '',
@@ -87,7 +87,7 @@ class SettingsForm extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {    
     if (nextProps.currentUser) {
       this.setState(Object.assign({}, this.state, {
         image: nextProps.currentUser.image || '',
